@@ -56,7 +56,7 @@
 
 <div class="booking-form">
     <h2>Бронирование места</h2>
-    <form action="submit_booking.php" method="POST">
+    <form id="bookingForm" action="submit_booking.php" method="POST">
         <div class="form-group">
             <label for="name">Читательский билет:</label>
             <input type="text" id="name" name="name" required>
@@ -64,9 +64,27 @@
         <div class="form-group">
             <label for="event">Мероприятие:</label>
             <select id="event" name="event" required>
+                <option value="none">Не выбрано</option>
                 <option value="event1">Мероприятие 1</option>
                 <option value="event2">Мероприятие 2</option>
                 <option value="event3">Мероприятие 3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="coworking">Коворкинг:</label>
+            <select id="coworking" name="coworking" required>
+                <option value="none">Не выбрано</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
             </select>
         </div>
         <div class="form-group">
@@ -74,6 +92,18 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        var eventValue = document.getElementById('event').value;
+        var coworkingValue = document.getElementById('coworking').value;
+        
+        if ((eventValue === 'none' && coworkingValue === 'none') || (eventValue !== 'none' && coworkingValue !== 'none')) {
+            alert('Ошибка: Выберите только одно значение - либо мероприятие, либо коворкинг.');
+            event.preventDefault();
+        }
+    });
+</script>
 
 </body>
 </html>
