@@ -56,7 +56,7 @@
 
 <div class="booking-form">
     <h2>Бронирование места</h2>
-    <form id="bookingForm" action="submit_booking.php" method="POST">
+    <form id="bookingForm">
         <div class="form-group">
             <label for="name">Читательский билет:</label>
             <input type="text" id="name" name="name" required>
@@ -88,22 +88,20 @@
             </select>
         </div>
         <div class="form-group">
-            <input type="submit" value="Забронировать">
+            <input type="button" id="submitButton" value="Забронировать">
         </div>
     </form>
 </div>
 
 <script>
-    // Подключение к Telegram Web App
     let tg = window.Telegram.WebApp;
 
-    document.getElementById('submitButton').addEventListener('click', function(event) {
+    document.getElementById('submitButton').addEventListener('click', function() {
         var eventValue = document.getElementById('event').value;
         var coworkingValue = document.getElementById('coworking').value;
         
         if ((eventValue === 'none' && coworkingValue === 'none') || (eventValue !== 'none' && coworkingValue !== 'none')) {
             alert('Ошибка: Выберите только одно значение - либо мероприятие, либо коворкинг.');
-            event.preventDefault();
         } else {
             tg.sendData('Complete');  // Отправка данных в Telegram
             tg.close();               // Закрытие Web App
