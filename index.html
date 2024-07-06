@@ -94,6 +94,11 @@
 </div>
 
 <script>
+    let tg = window.Telegram.WebApp;
+    let event = document.getElementById("event");
+    let coworking = document.getElementById("coworking");
+    let button = document.getElementById("")
+
     document.getElementById('bookingForm').addEventListener('submit', function(event) {
         var eventValue = document.getElementById('event').value;
         var coworkingValue = document.getElementById('coworking').value;
@@ -101,6 +106,10 @@
         if ((eventValue === 'none' && coworkingValue === 'none') || (eventValue !== 'none' && coworkingValue !== 'none')) {
             alert('Ошибка: Выберите только одно значение - либо мероприятие, либо коворкинг.');
             event.preventDefault();
+        }
+        else {
+            tg.sendData('Comlete');
+            tg.close();
         }
     });
 </script>
