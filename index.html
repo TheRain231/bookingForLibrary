@@ -40,14 +40,15 @@
             border: 1px solid #ccc;
             border-radius: 3px;
         }
-        .booking-form .form-group input[type="submit"] {
+        .booking-form .form-group input[type="button"] {
             background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 10px;
         }
-        .booking-form .form-group input[type="submit"]:hover {
+        .booking-form .form-group input[type="button"]:hover {
             background-color: #45a049;
         }
     </style>
@@ -94,17 +95,18 @@
 </div>
 
 <script>
-    let tg = window.Telegram.WebApp;
 
     document.getElementById('submitButton').addEventListener('click', function() {
+        var name = document.getElementById('name').value;
         var eventValue = document.getElementById('event').value;
         var coworkingValue = document.getElementById('coworking').value;
         
-        if ((eventValue === 'none' && coworkingValue === 'none') || (eventValue !== 'none' && coworkingValue !== 'none')) {
+        if (name === '') {
+            alert('Ошибка: Введите номер читательского билета.');
+        } else if((eventValue === 'none' && coworkingValue === 'none') || (eventValue !== 'none' && coworkingValue !== 'none')){
             alert('Ошибка: Выберите только одно значение - либо мероприятие, либо коворкинг.');
         } else {
-            tg.sendData('Complete');  // Отправка данных в Telegram
-            tg.close();               // Закрытие Web App
+            alert('Вы зарегистрированы!');
         }
     });
 </script>
